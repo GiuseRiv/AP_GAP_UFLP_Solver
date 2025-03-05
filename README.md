@@ -5,21 +5,21 @@
 This project provides efficient solutions for three types of computational problems: AP (Assignment Problem), GAP (Generalized Assignment Problem), and UFLP (Uncapacitated Facility Location Problem).
 
 
-# AP (Assignment Problem):
+## AP (Assignment Problem):
 
 Pairs elements from two different sets of equal size.
 Each possible pair has an associated cost.
 The goal is to minimize the total assignment cost.
 
 
-# GAP (Generalized Assignment Problem):
+## GAP (Generalized Assignment Problem):
 
 Given a set of agents (M = {1, ..., m}) and tasks (N = {1, ..., n}), let c_ij be the cost of assigning task j to agent i.
 Performing a task consumes a certain amount of resource; let r_ij be the resource consumed by agent i for task j, and let b_i be the maximum resource available for agent i.
 The problem is to assign all tasks while minimizing total cost and ensuring resource limits are respected.
 
 
-# UFLP (Uncapacitated Facility Location Problem):
+## UFLP (Uncapacitated Facility Location Problem):
 
 Given a set of potential facilities (M = {1, ..., m}) and customers (N = {1, ..., n}), let f_i be the fixed cost to open facility i and c_ij be the transportation cost to serve customer j from facility i (if opened).
 The goal is to decide which facilities to open and how to assign customers so that the sum of fixed opening costs and transportation costs is minimized.
@@ -80,7 +80,7 @@ f_i:
 
 Explanation: • The string after "NAME:" represents the instance name. • The integers after "m:" and "n:" are the number of potential facilities and customers, respectively. • The rows after "c_ij:" list the transportation costs from facility i to customer j. • The row after "f_i:" lists the fixed cost associated with opening each facility.
 
------ PROJECT ORGANIZATION -----
+## PROJECT ORGANIZATION 
 
 The project is divided into three main groups: instances, solvers, and solutions. Interfaces and implementations are separated into .h and .cpp files for a modern and clean organization.
 
