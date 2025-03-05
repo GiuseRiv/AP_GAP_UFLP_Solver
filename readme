@@ -1,34 +1,46 @@
-Il progetto fornisce risoluzioni efficienti per tre tipi di problemi computazionali: AP (assignment problem), GAP (generalized assignment problem), UFLP (Uncapacitated Facility Location Problem), così definiti:
+EFFICIENT SOLVER FOR COMPUTATIONAL ASSGINMENT PROBLEMS
 
--AP: richiede di associare coppie di elementi presi da due insiemi differenti della stessa cardinalità. Tenendo conto che ad ogni possibile coppia è associato un costo, si vuole minimizzare il costo totale di assegnamento.
--GAP: Dato un insieme M = {1, ..., m} di agenti ed un insieme N = {1, ..., n} di compiti, sia cij il costo di assegnare l’esecuzione del compito j all’agente i.
-L’esecuzione di un compito da parte di un agente implica il consumo di un certo quantitativo di risorsa.
-Sia rij il quantitativo di risorsa consumata dall’agente i per eseguire il compito j (se il compito j venisse assegnato all’agente i).
-Inoltre, sia bi il quantitativo massimo di risorsa che può essere consumato dall’agente i nell’eseguire i compiti ad esso assegnati.
-Il problema consiste nell’assegnare l’esecuzione di tutti i compiti (agli agenti) minimizzando il costo totale per eseguire tutti i compiti
--UFLP: Dato un insieme di potenziali depositi M = {1, ..., m} ed un insieme N = {1, ..., n} di clienti, sia fi un costo fisso associato alla apertura del deposito i e sia cij il costo di trasporto per servire il cliente j dal deposito i (se il deposito i venisse aperto). Il problema è decidere quali depositi aprire e quali clienti servire dai depositi aperti in modo da minimizzare la somma dei costi fissi di apertura e dei costi di trasporto.
+This project provides efficient solutions for three types of computational problems: AP (Assignment Problem), GAP (Generalized Assignment Problem), and UFLP (Uncapacitated Facility Location Problem).
 
 
------DATI IN INPUT-----
-_AP_
-si accettano in input file di testo di un’istanza del AP nel seguente formato:
-NAME: AP_5-1
-n: 5
+AP (Assignment Problem):
+
+Pairs elements from two different sets of equal size.
+Each possible pair has an associated cost.
+The goal is to minimize the total assignment cost.
+
+
+GAP (Generalized Assignment Problem):
+
+Given a set of agents (M = {1, ..., m}) and tasks (N = {1, ..., n}), let c_ij be the cost of assigning task j to agent i.
+Performing a task consumes a certain amount of resource; let r_ij be the resource consumed by agent i for task j, and let b_i be the maximum resource available for agent i.
+The problem is to assign all tasks while minimizing total cost and ensuring resource limits are respected.
+
+
+UFLP (Uncapacitated Facility Location Problem):
+
+Given a set of potential facilities (M = {1, ..., m}) and customers (N = {1, ..., n}), let f_i be the fixed cost to open facility i and c_ij be the transportation cost to serve customer j from facility i (if opened).
+The goal is to decide which facilities to open and how to assign customers so that the sum of fixed opening costs and transportation costs is minimized.
+
+----- INPUT DATA FORMATS -----
+
+AP: 
+Example input file: 
+NAME: AP_5-1 
+n: 5 
 c_ij:
 36 46 34 25 29
 12 33 26 10 32
 34 23 36 34 21
 10 42 25 24 16
 39 19 24 16 50
-dove:
-• la stringa delimitata da caratteri di spaziatura che compare dopo “NAME:” rappresenta il nome dell’istanza;
-• il valore intero che compare dopo “n:” rappresenta il numero di agenti e di compiti;
-• per i=1,...,n, l’i-esima riga successiva a “c_ij:” riporta, per j=1,...,n, il costo (valore intero) di
-assegnare l’esecuzione del compito j all’agente i.
 
-_GAP_
-si accettano in input file di testo che descrivono un’istanza del GAP nel seguente
-formato:
+
+Explanation: 
+• The string after "NAME:" represents the instance name. • The integer after "n:" indicates the number of agents and tasks. • After "c_ij:", each row lists the cost (integer) for assigning task j to agent i.
+
+
+GAP: Example input file: 
 NAME: GAP_5_10-1
 m: 5
 n: 10
@@ -46,16 +58,13 @@ r_ij:
 23 19 18 17 25 14 15 12 11 5
 b_i:
 30 30 30 30 30
-dove:
-• la stringa delimitata da caratteri di spaziatura che compare dopo “NAME:” rappresenta il nome dell’istanza;
-• i valori interi che compaiono dopo “m:” e “n:” rappresentano rispettivamente il numero di agenti ed il numero di compiti;
-• per i=1,...,m, l’i-esima riga successiva a “c_ij:” riporta, per j=1,...,n, il costo (valore intero) di assegnare l’esecuzione del compito j all’agente i;
-• per i=1,...,m, l’i-esima riga successiva a “r_ij:” riporta, per j=1,...,n, il quantitativo (valore intero) di risorsa consumata dall’agente i per eseguire il compito j (se il compito j venisse assegnato all’agente i).
-• la riga successiva a “b_i:” riporta, per i=1,...,m, il quantitativo massimo (valore intero) di risorsa che può essere consumato dall’agente i nell’eseguire i compiti ad esso assegnati.
 
-_UFLP_
-si accettano in input file di testo che descrivono un’istanza del UFLP nel seguente
-formato:
+Explanation: 
+• The string after "NAME:" represents the instance name. • The integers after "m:" and "n:" are the number of agents and tasks, respectively. • The rows after "c_ij:" list the assignment costs. • The rows after "r_ij:" list the resource consumption values. • The row after "b_i:" lists the maximum resource available for each agent.
+
+
+UFLP: 
+Example input file: 
 NAME: UFLP_4_3-1
 m: 4
 n: 3
@@ -66,81 +75,58 @@ c_ij:
 100   120   150
 f_i:
 300   400   150   200
-dove:
-• la stringa delimitata da caratteri di spaziatura che compare dopo “NAME:” rappresenta il nome dell’istanza;
-• i valori interi che compaiono dopo “m:” e “n:” rappresentano rispettivamente il numero di potenziali depositi ed il numero di clienti;
-• per i=1,...,m, l’i-esima riga successiva a “c_ij:” riporta, per j=1,...,n, il costo (valore intero) di trasporto per servire il cliente j dal deposito i (se il deposito i venisse aperto);
-• la riga successiva a “f_i:” riporta, per i=1,...,m, il costo fisso (valore intero) associato alla apertura del deposito i.
 
+Explanation: • The string after "NAME:" represents the instance name. • The integers after "m:" and "n:" are the number of potential facilities and customers, respectively. • The rows after "c_ij:" list the transportation costs from facility i to customer j. • The row after "f_i:" lists the fixed cost associated with opening each facility.
 
------ORGANIZZAZIONE PROGETTO-----
-il progetto è diviso logicamente in base alle funzionalità della classe (raggruppati instances, solvers e solutions);
-per vantaggi a compile time e per seguire una organizzazione più moderna e pulita, sono tenute separate interfaccia e implementazione delle subclasses in file .h e .cpp
+----- PROJECT ORGANIZATION -----
 
-├── instances/
-│   └── apInstance.h
-│   └── apInstance.cpp
-│   └── gapInstance.h
-│   └── gapInstance.cpp
-│   └── uflpInstance.h
-│   └── uflpInstance.cpp
-├── solutions/
-│   ├── apSolution.cpp
-│   └── apSolution.h
-│   ├── gapSolution.cpp
-│   └── gapSolution.h
-│   ├── uflpSolution.cpp
-│   └── uflpSolution.h
-└── solvers/
-│   └──apSolver.h
-│   └──apSolver.cpp
-│   └──gapSolver.h
-│   └──gapSolver.cpp
-│   └──uflpSolver.h
-│   └──uflpSolver.cpp
-└── main-cpp
-└──CreateProblemInstance.h
-└──CreateProblemInstance.cpp
-└──ProblemSolution.h
-└──ProblemSolver.h
-└──ProblemInstance.h  
+The project is divided into three main groups: instances, solvers, and solutions. Interfaces and implementations are separated into .h and .cpp files for a modern and clean organization.
 
------ENTITÀ ASTRATTE-----
-il flusso di ricezione e risoluzione dei problemi computazionali è gestito da tre entità astratte:
-ProblemIstance: entità che rappresenta una istanza del problema, ha come membri tutti i dati essenziali per identificare una istanza (per AP: nome, numero agenti e compiti, matrice e costi. per GAP: // + matrice risorse, vettore vincoli, per UFLP // (AP) + vettore vincoli).
-                inoltre, tutte le istanze hanno dei metodi get che ritornano i dati della istanza
-ProblemSolver: entità che contiene il vero e proprio algoritmo di risoluzione (la classe astratta ha solo un metodo solve vuoto, che attraverso override viene implementato con algoritmo di risoluzione specifico dalle sottoclassi astratte)
-ProblemSolution: entità che immagazzina la soluzione della istanza, generata dal metodo solve, sotto forma di vettore di assegnamento. ProblemSolution ha come metodo principale print, che mette a console il vettore soluzione.
+Directory structure: instances/ apInstance.h apInstance.cpp gapInstance.h gapInstance.cpp uflpInstance.h uflpInstance.cpp solutions/ apSolution.h apSolution.cpp gapSolution.h gapSolution.cpp uflpSolution.h uflpSolution.cpp solvers/ apSolver.h apSolver.cpp gapSolver.h gapSolver.cpp uflpSolver.h uflpSolver.cpp main-cpp CreateProblemInstance.h CreateProblemInstance.cpp ProblemSolution.h ProblemSolver.h ProblemInstance.h
 
------LETTURA DATI DA FILE-----
-la funzione └──CreateProblemInstance gestisce la lettura di tutti i dati della istanza e, in base a questi, costruisce un puntatore a un tipo di ProblemInstance con i dati letti. Attraverso uno switch case, viene gestita la istanziazione di una istanza AP, GAP o UFLP, in base alla variabile problemType, che contiene il tipo di problema letto da input
-La funzione è composta da tre funzioni helper (una per tipo di problema), che si occupano specificatamente della lettura dei dati e aggiornano le variabili interessate e definite nella funzione principale.
-In └──CreateProblemInstance è anche presente un metodo di overload dell operatore >> che permette di leggere da linea di comando una stringa che corrisponde al problemType, convertendo implicitamente la stringa in enum (in quanto per gli switch case ho voluto usare degli enum che corrispondo al tipo di problema)
+----- ABSTRACT ENTITIES -----
 
+ProblemInstance: Represents a problem instance with all the essential data (e.g., for AP: instance name, number of agents/tasks, cost matrix; for GAP: additional resource matrix and constraints; for UFLP: plus facility opening costs). It includes getter methods to access instance data.
 
+ProblemSolver: Contains the algorithm to solve the problem. This abstract class has a "solve" method that is overridden in the subclasses with a problem-specific algorithm.
 
------RISOLUZIONE-----
-AP: come algoritmo di risoluzione per il problema di assegnamento si è scelta una implementazione del noto algoritmo ungherese, con complessità O(n^3)
-GAP: per la risoluzione del problema di assegnamento generalizzato si è scelto un approcio basato sulla generazione di tante soluzioni accettabili (che rispettano i vincoli) ma randomiche, per poi andare a scegliere quella con costo minore:
-     il tutto è gestito da un grosso ciclo con un numero massimo di iterazioni pari a 1000, all interno del ciclo si tiene conto degli agenti disponibili in base al vettore di risorse, e si assegna randomicamente ogni compito a uno degli agenti disponibili, nel fare ciò si tiene conto del costo totale di assegnamento, se dopo aver trovato una soluzione totale plausibile, il costo di questa soluzione è minore di quella precedente, si aggiorna la variabile che contiene la miglior soluzione.
-UFLP: la risoluzione ha lo stesso approcio del GAP: in un grosso ciclo vengono generate diverse soluzioni randomiche e tra queste si scegli la migliore.  
-      il primo step è la scelta di apertura dei depositi. Per rendere la generazione di una soluzione il più randomica possibile, si è scelto di usare il metodo coin toss per aprire i depositi, ogni deposito ha così il 50% di chance di essere aperto.
-      Dopodiche si procede con assegnare a ogni cliente un deposito, il che non è svolto in maniera del tutto randomica, infatti il ciente viene assegnato al deposito con costo minore tra quelli aperti.
-      Alla fine del ciclo si sommano i costi di apertura dei depositi aperti e i costi di assegnamento e se i costi totali della soluzione corrente sono minori a quelli della bestSolution immagazzinata, la bestSolution viene aggiornata.
+ProblemSolution: Stores the solution as an assignment vector. It includes a "print" method that outputs the solution vector to the console.
 
------GIRO AD ALTO LIVELLO-----
-come è possibile evincere dal main, ad alto livello è tutto gestito da shared pointers, non dovendo allocare memoria manualmente ho potuto concentrarmi sulle funzionalitò del programma senza preoccuparmi della implementazione di distruttori.
-Il giro è il seguente:
--quando si avvia il programma viene richiesto di scrivere in input il tipo di problema (AP, GAP, UFLP)
--la stringa viene letta e immagazzinata come enum (grazie a overload del operatore >> in └──CreateProblemInstance) nella variabile problemType
--viene richiesto di scrivere in input il nome del file di testo
--viene aperto il file di testo da └──CreateProblemInstance, che istanzia uno shared pointer a una istanza di ProblemInstance (nello specifico alla sotto classe che corrisponde al problema attuale) che viene costruita in base ai dati letti da file. (AP: costMatrix, n (numero di agenti e compiti), nome istanza, GAP: costMatrix, resourceMatrix, vettore maxResources, n, m (numero di agenti e compiti), nome istanza, UFLP: costMatrix, vettore costi di apertura, m, n (numero di depositi, clienti), nome istanza)
--viene chiamato il Solver specifico in base al tipo di problema (switch case), che prende in input la istanza attuale e restituisce in output un puntatore alla soluzione per la istanza, ossia un vettore che contiene in posizione i, assegnamento soluzione[i].
--viene messa a display la soluzione attraverso il metodo print implementato da ogni sotttoclasse astratta di ProblemSolution.
--viene salvata la soluzione in un file di testo: per far si che il file di soluzione possa essere identificato rispetto al nome istanza, il file di soluzione verrà chiamato: soluzione"nome istanza".txt
+----- FILE DATA READING -----
 
------gestione eccezioni-----
-nel programma è presente una gestione delle eccezioni molto minimale sia a basso livello (ad esempio nella lettura dei dati in └──CreateProblemInstance) che ad alto (guardare main.cpp)
+The function CreateProblemInstance handles reading instance data from a file and creates a pointer to a ProblemInstance based on the input. It uses a switch-case structure based on the variable "problemType" (determined from the input) to instantiate an AP, GAP, or UFLP instance.
 
------compilazione-----
-per la compilazione del progetto è reso disponibile un makefile
+Helper functions (one per problem type) are used to read the data and update the relevant variables. An overloaded ">>" operator is provided to read a string (representing the problem type) from the command line and convert it into an enum.
+
+----- SOLUTION APPROACHES -----
+
+AP: Uses the Hungarian algorithm to solve the assignment problem with a complexity of O(n^3).
+
+GAP: Generates multiple random but acceptable solutions (satisfying constraints) using a loop with up to 1000 iterations.
+
+For each iteration, tasks are randomly assigned to available agents based on resource availability.
+The solution with the lowest cost is selected.
+UFLP: Follows a similar approach to GAP.
+
+First, facilities are randomly chosen to be opened (each with a 50% chance via a coin toss).
+Next, each customer is assigned to the open facility with the minimum transportation cost.
+The total cost (opening plus assignment costs) is calculated, and if it is lower than the best found so far, the best solution is updated.
+----- HIGH-LEVEL FLOW -----
+
+Input Problem Type: The program prompts the user to enter the problem type (AP, GAP, UFLP). The input string is converted into an enum using an overloaded ">>" operator in CreateProblemInstance.
+
+Input File Name: The user is prompted to provide the name of the text file containing the instance data.
+
+Instance Creation: CreateProblemInstance opens the file and creates a shared pointer to the appropriate ProblemInstance (AP, GAP, or UFLP) based on the file data.
+
+Problem Solving: The corresponding solver is called (using a switch-case) to solve the instance and generate a solution vector.
+
+Display and Save the Solution: The solution is displayed using the print method of the ProblemSolution subclass and saved to a text file named "soluzione<instanceName>.txt".
+
+----- EXCEPTION HANDLING -----
+
+Minimal exception handling is implemented at both low levels (e.g., during data reading in CreateProblemInstance) and at higher levels (in main.cpp).
+
+----- COMPILATION -----
+
+A makefile is provided to facilitate project compilation.
