@@ -1,0 +1,6 @@
+Soluzione all'istanza AP:
+Agente 0 -> Compito 0
+Agente 1 -> Compito 3
+Agente 2 -> Compito 4
+Agente 3 -> Compito 1
+Agente 4 -> Compito 2
